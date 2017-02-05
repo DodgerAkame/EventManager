@@ -17,11 +17,12 @@ public class EventDAOImpl implements EventDAO {
 	
 	@Bean  
 	public SessionFactory sessionFactory(HibernateEntityManagerFactory hemf){  
-	    return hemf.getSessionFactory();  
+
+		return hemf.getSessionFactory();  
 	} 
 	
 	private Session getCurrentSession(){
-		return sessionfactory.getCurrentSession();
+		return sessionfactory.openSession();
 	}
 	
 	@Override

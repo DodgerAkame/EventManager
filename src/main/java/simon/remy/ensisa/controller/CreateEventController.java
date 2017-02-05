@@ -2,6 +2,7 @@ package simon.remy.ensisa.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Controller
 public class CreateEventController extends WebMvcConfigurerAdapter {
 
+	@Autowired
+	private EventService service;
+	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/result").setViewName("result");
@@ -29,6 +33,9 @@ public class CreateEventController extends WebMvcConfigurerAdapter {
 
 		if (bindingResult.hasErrors())
 			return "creation";
+		
+		service.addEvent(event);
+		
 
 		return "result";
 	}

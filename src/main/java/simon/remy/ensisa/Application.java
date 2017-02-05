@@ -34,7 +34,7 @@ public class Application {
 		jdbc.execute("DROP TABLE events IF EXISTS");
 		jdbc.execute("CREATE TABLE events( id SERIAL, date DATE, title VARCHAR(255), hours INTEGER, lieu VARCHAR(255), type VARCHAR(255))");
 		
-	}*/
+	}
 
 	@Bean
 	public CommandLineRunner demo(EventRepository repository){
@@ -44,11 +44,11 @@ public class Application {
 			log.info("Commande findAll()");
 			log.info("-------------------");
 			for(Event e : repository.findAll()){
-				log.info(e.getDate());
+				log.info(e.getDescription());
 			}
 		};
 		
-	}
+	}*/
 	
 	
 }
