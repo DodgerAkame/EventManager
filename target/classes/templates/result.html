@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Handling Form Submission</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Evénement crée</h1>
+	<p th:text="'Title: ' + ${event.title}" />
+	<p th:text="'Description: ' + ${event.description}" />
+	<p th:text="'Durée: ' + ${event.hours}" />
+	<p th:text="'Lieu de l\'événement: ' + ${event.lieu}" />
+	<p th:text="'Type: '+ ${event.type}" />
+	<button href="/creation">Créer un nouvel événement</button>
+</body>
+</html>
