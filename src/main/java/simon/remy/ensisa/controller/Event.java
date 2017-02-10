@@ -1,31 +1,44 @@
 package simon.remy.ensisa.controller;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-@Entity
+@Entity(name="events")
 @Table(name="events")
 public class Event {
 
 	@Id
 	@GeneratedValue
+	@Column(name="id")
 	private Integer id;
+	
 	@NotNull
 	@DateTimeFormat(iso=ISO.DATE)
+	@Column(name="date")
 	private String date;
+	
+	@Column(name="title")
 	private String title;
+	
+	@Column(name="description")
 	private String description;
+	
 	@Min(1)
+	@Column(name="hours")
 	private int hours;
+	
+	@Column(name="lieu")
 	private String lieu;
+	
+	@Column(name="type")
 	private String type;
 
 	public Event() {
