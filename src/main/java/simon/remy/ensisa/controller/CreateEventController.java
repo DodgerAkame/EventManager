@@ -37,7 +37,7 @@ public class CreateEventController extends WebMvcConfigurerAdapter {
 		service.addEvent(event);
 		
 		for (Event evt : service.getEvents()){
-		System.out.println(evt.getTitle());
+		System.out.println(evt.getId());
 		}
 		
 

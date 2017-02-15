@@ -53,6 +53,8 @@ public class Event {
 		this.type = type;
 	}
 
+	//TODO faire une méthode PostConstruc ini pour remplir la base
+	
 	public String getDate() {
 		return date;
 	}
@@ -101,11 +103,11 @@ public class Event {
 		this.type = type;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

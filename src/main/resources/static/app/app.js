@@ -1,15 +1,15 @@
 (function() {
 	var list = angular.module('list', [ 'ngRoute' ]);
-	list.controller('appController', [ '$http', function($http) {
-		var evtlist = this;
-		$http.get('/event').then(function(response) {
-			evtlist.events = response.data;
-			//TODO voir comment récupérer les events
-			for ( var propertyName in evtlist.events._embedded.event.toString()) {
-				alert(propertyName);
-			}
-			
-		});
-	} ]);
+	list.controller('appController', [ '$http', '$scope',
+			function($http, $scope) {
+				var event = this;
+				event.events = [];
+				$http.get('/event').then(function(response) {
+					event.events = response.data._embedded.event;
 
+					alert(events[0].date);
+				});
+				
+			} ]);
+	
 })();

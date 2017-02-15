@@ -10,15 +10,12 @@ public class ListEventController {
 
 	@Autowired
 	private EventService service;
-	
+
 	@GetMapping("/liste")
-	public String eventList(Model model){
+	public String eventList(Model model) {
 		model.addAttribute("events", service.getEvents());
-		
-		
-		System.out.println(service.getEvents().size());
-		
+
 		return "liste";
 	}
-	
+
 }

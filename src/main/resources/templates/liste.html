@@ -7,10 +7,15 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<script type="text/javascript" src="js/angular.min.js" th:href="@{js/angular.min.js}"/>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js" th:href="@{https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js}" />
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js" th:href="@{https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js}" />
-<script type="text/javascript" src="app/app.js" th:href="@{app/app.js}"/>
+<script type="text/javascript" src="js/angular.min.js"
+	th:href="@{js/angular.min.js}" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"
+	th:href="@{https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js}" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js"
+	th:href="@{https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js}" />
+<script type="text/javascript" src="app/app.js" th:href="@{app/app.js}" />
 
 
 
@@ -18,11 +23,14 @@
 
 <body ng-controller="appController as events">
 
-	<div ng-repeat="event in events._embedded.event.0">
-		<p>{{event.title}}</p>
-		<p>yo2</p>
-	</div>
+	<!-- 	<div ng-repeat="event in events"> -->
+	<!-- 		<p>Yo{{event.date}}</p> -->
+	<!-- 		<p>yo2</p> -->
+	<!-- 	</div> -->
 	
+<ul>
+	<li ng-repeat="event in events.events"><p>{{event.date}}</p></li>
+	</ul>
 
 </body>
 </html>
