@@ -23,14 +23,14 @@
 
 <body ng-controller="appController as events">
 
-	<!-- 	<div ng-repeat="event in events"> -->
-	<!-- 		<p>Yo{{event.date}}</p> -->
-	<!-- 		<p>yo2</p> -->
-	<!-- 	</div> -->
-	
-<ul>
-	<li ng-repeat="event in events.events"><p>{{event.date}}</p></li>
-	</ul>
+	<div ng-repeat="event in events.events">
+	<h1>Liste des événements</h1>
+		<p>{{event.title}}</p>
+		<p>{{event.date}}</p>
+		<p>{{event.type}}</p>
+		<p>{{event.hours}}</p>
+		<p>{{event.description}}</p>
+	</div>
 
 </body>
 </html>

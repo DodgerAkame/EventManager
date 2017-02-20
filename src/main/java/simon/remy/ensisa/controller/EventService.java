@@ -9,5 +9,6 @@ public interface EventService {
 	public Event getEvent(int id);
 	public void deleteEvent(int id);
 	public List<Event> getEvents();
+	
 
 }

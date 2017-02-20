@@ -1,44 +1,50 @@
 package simon.remy.ensisa.controller;
 
+import java.io.Serializable;
+
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.hibernate.annotations.DynamicUpdate;
 
-@Entity(name="events")
-@Table(name="events")
-public class Event {
+@Entity(name = "events")
+@Table(name = "events")
+@Access(value = AccessType.FIELD)
+@DynamicUpdate
+public class Event implements Serializable {
 
 	@Id
-	@GeneratedValue
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer id;
-	
+
 	@NotNull
-	@DateTimeFormat(iso=ISO.DATE)
-	@Column(name="date")
+	// @DateTimeFormat(iso=ISO.DATE)
+	@Column(name = "date")
 	private String date;
-	
-	@Column(name="title")
+
+	@Column(name = "title")
 	private String title;
-	
-	@Column(name="description")
+
+	@Column(name = "description")
 	private String description;
-	
+
 	@Min(1)
-	@Column(name="hours")
+	@Column(name = "hours")
 	private int hours;
-	
-	@Column(name="lieu")
+
+	@Column(name = "lieu")
 	private String lieu;
-	
-	@Column(name="type")
+
+	@Column(name = "type")
 	private String type;
 
 	public Event() {
@@ -53,8 +59,8 @@ public class Event {
 		this.type = type;
 	}
 
-	//TODO faire une méthode PostConstruc ini pour remplir la base
-	
+	// TODO faire une méthode PostConstruc ini pour remplir la base
+
 	public String getDate() {
 		return date;
 	}
@@ -109,6 +115,12 @@ public class Event {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "[Event :: Title :" + title + "; Description :" + description + "; Date : " + date + "; Hours : " + hours
+				+ "; Lieu : " + lieu + "; Type : " + type + "; ID : " + id + "]";
 	}
 
 }

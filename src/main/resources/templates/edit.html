@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Edition d'un événement</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<h1>Edition d'un événement</h1>
+	<form action="#" th:action="@{/edit}" th:object="${event}" method="post">
+		<p>
+			Date de début : <input type="date" th:field="*{date}" />
+		</p>
+
+		<p>
+			Title: <input type="text" th:field="*{title}" />
+		</p>
+		<p>
+			Description:
+			<textarea rows="4" cols="50" th:field="*{description}" />
+		</p>
+		<p>
+			Durée (en heures) :<input type="number" th:field="*{hours}" />
+		</p>
+		<p>
+			Lieu de l'événement: <input type="text" th:field="*{lieu}" />
+		</p>
+		<p>
+			Type: <input type="text" th:field="*{type}" />
+		</p>
+		<p>
+			<input type="submit" value="Submit" /> <input type="reset"
+				value="Reset" />
+		</p>
+	</form>
+</body>
+
+</html>

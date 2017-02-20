@@ -10,11 +10,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import simon.remy.ensisa.controller.Event;
+import simon.remy.ensisa.controller.EventService;
+
 @Import(RepositoryRestMvcConfiguration.class)
 @EnableJpaRepositories
 @SpringBootApplication
 public class Application {
-	
+
 	@Autowired
 	JdbcTemplate jdbc;
 
@@ -25,28 +28,22 @@ public class Application {
 
 	}
 
-	
-	
-	/*@Override
-	public void run(String... arg0) throws Exception {
-		jdbc.execute("DROP TABLE events IF EXISTS");
-		jdbc.execute("CREATE TABLE events( id SERIAL, date DATE, title VARCHAR(255), hours INTEGER, lieu VARCHAR(255), type VARCHAR(255))");
-		
-	}
+	/*
+	 * @Override public void run(String... arg0) throws Exception {
+	 * jdbc.execute("DROP TABLE events IF EXISTS"); jdbc.
+	 * execute("CREATE TABLE events( id SERIAL, date DATE, title VARCHAR(255), hours INTEGER, lieu VARCHAR(255), type VARCHAR(255))"
+	 * );
+	 * 
+	 * }
+	 * 
+	 * @Bean public CommandLineRunner demo(EventRepository repository){ return
+	 * (args)-> { repository.save(new
+	 * Event("05/02/2017","YO","YO",1,"ICI","JSP")); repository.save(new
+	 * Event("06/02/2017","YO","YO",1,"ICI","JSP"));
+	 * log.info("Commande findAll()"); log.info("-------------------");
+	 * for(Event e : repository.findAll()){ log.info(e.getDescription()); } };
+	 * 
+	 * }
+	 */
 
-	@Bean
-	public CommandLineRunner demo(EventRepository repository){
-		return (args)-> {
-			repository.save(new Event("05/02/2017","YO","YO",1,"ICI","JSP"));
-			repository.save(new Event("06/02/2017","YO","YO",1,"ICI","JSP"));
-			log.info("Commande findAll()");
-			log.info("-------------------");
-			for(Event e : repository.findAll()){
-				log.info(e.getDescription());
-			}
-		};
-		
-	}*/
-	
-	
 }
