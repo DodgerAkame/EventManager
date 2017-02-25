@@ -14,6 +14,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity(name = "events")
 @Table(name = "events")
@@ -24,10 +26,10 @@ public class Event implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Integer id;
+	private int id;
 
 	@NotNull
-	// @DateTimeFormat(iso=ISO.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "date")
 	private String date;
 
@@ -46,6 +48,9 @@ public class Event implements Serializable {
 
 	@Column(name = "type")
 	private String type;
+	
+	@Column(name = "favorite")
+	private boolean favorite;
 
 	public Event() {
 
@@ -53,13 +58,29 @@ public class Event implements Serializable {
 
 	public Event(String date, String title, String description, int hours, String location, String type) {
 		this.date = date;
+		this.title = title;
 		this.description = description;
 		this.hours = hours;
 		this.lieu = location;
 		this.type = type;
+		this.favorite = false;
 	}
 
 	// TODO faire une méthode PostConstruc ini pour remplir la base
+
+	
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public boolean isFavorite() {
+		return favorite;
+	}
+
+	public void setFavorite(boolean favorite) {
+		this.favorite = favorite;
+	}
 
 	public String getDate() {
 		return date;

@@ -49,6 +49,7 @@ public class EventDAOImpl implements EventDAO {
 		eventToUpdate.setTitle(e.getTitle());
 		eventToUpdate.setType(e.getType());
 		eventToUpdate.setDate(e.getDate());
+		eventToUpdate.setFavorite(e.isFavorite());
 
 		Session session;
 		session = getCurrentSession();
@@ -67,16 +68,28 @@ public class EventDAOImpl implements EventDAO {
 	@Transactional
 	public Event getEvent(int id) {
 		Event event = (Event) getCurrentSession().get(Event.class, id);
-		// System.out.println(event);
+
 		return event;
 	}
 
 	@Override
 	@Transactional
 	public void deleteEvent(int id) {
-		Event event = (Event) getCurrentSession().get(Event.class, id);
-		if (event != null)
-			getCurrentSession().delete(event);
+//		Event event = (Event) getCurrentSession().get(Event.class, id);
+//		if (event != null)
+//			getCurrentSession().delete(event);
+
+		Session session = getCurrentSession();
+		try {
+			Event event = (Event) session.get(Event.class, id);
+			org.hibernate.Transaction tx = session.beginTransaction();
+			session.delete(event);
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close(); 
+		}
 	}
 
 	@Override

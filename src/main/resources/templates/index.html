@@ -1,36 +1,18 @@
 <!DOCTYPE html>
-<html ng-app="store">
+<html>
 
 <head>
+<title>Event manager</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
-<body ng-controller="StoreController as store">
-	<h1>Hello World!</h1>
-
-	<p>I am {{4 + 6}}</p>
-	<p>I am {{"your" + " father"}}</p>
-
-	<!-- 	<div ng-hide="store.product.soldOut"> -->
-	<!-- 		<h1>{{store.product.name}}</h1> -->
-	<!-- 		<h2>${{store.product.price}}</h2> -->
-	<!-- 		<p>{{store.product.description}}</p> -->
-	<!-- 		<button ng-show="store.product.canPurchase">Add to store</button> -->
-	<!-- 	</div> -->
-
-	<div ng-repeat="product in store.products">
-		<h1>{{product.name}}</h1>
-		<h2>${{product.price}}</h2>
-		<p>{{product.description}}</p>
-		<button ng-show="product.canPurchase">Add to store</button>
-	</div>
-
-
-	<a href="/liste">Lister les événements</a>
-	<a href="/creation">Création d'un événement</a>
-
-	<script type="text/javascript" src="../static/js/angular.min.js"></script>
-	<script type="text/javascript" src="../static/app/app.js"></script>
+<body class="container-fluid">
+	<h1>Event Manager</h1>
+	<a href="/liste"><button class="btn btn-default">Lister
+			les événements</button></a>
+	<a href="/creation"><button class="btn btn-default">Création
+			d'un événement</button></a>
 </body>
 
 </html>

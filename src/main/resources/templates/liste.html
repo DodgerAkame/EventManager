@@ -1,9 +1,8 @@
 <!DOCTYPE HTML>
 <html ng-app="list" xmlns:th="http://www.thymeleaf.org">
 
-
 <head>
-<title>Getting Started: Handling Form Submission</title>
+<title>Event Manager : événements crées</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
@@ -18,19 +17,59 @@
 <script type="text/javascript" src="app/app.js" th:href="@{app/app.js}" />
 
 
-
 </head>
 
 <body ng-controller="appController as events">
 
-	<div ng-repeat="event in events.events">
 	<h1>Liste des événements</h1>
-		<p>{{event.title}}</p>
-		<p>{{event.date}}</p>
-		<p>{{event.type}}</p>
-		<p>{{event.hours}}</p>
-		<p>{{event.description}}</p>
-	</div>
+
+	<table class="table table-hover container-fluid"
+		ng-repeat="event in events.events">
+
+		<h3>{{(events.events | filter: {favorite: 'true'}).length}}
+			événements en favoris</h3>
+
+		<td ng-class="{success: event.favorite == true}"><h3>{{event.title}}</h3>
+			<b><span class="text-muted">le </span>{{event.date}}</b>
+			<h4><span class="text-muted">à </span>{{event.lieu}}</h4>
+			<p><span class="text-muted">Type d'événement : </span>{{event.type}}</p>
+			<p><span class="text-muted">Durée de l'événement : </span>{{event.hours}} heures</p>
+			<blockquote>{{event.description}}</blockquote> <a class="btn btn-default"
+			ng-hide="event.favorite" ng-attr-id="{{event._links.self.href}}"
+			onclick="fave(this.id)"><span class="glyphicon glyphicon-heart"
+				style="color: #990000;" /> Add to favorites</a> <a
+			class="btn btn-default" ng-show="event.favorite"
+			ng-attr-id="{{event._links.self.href}}" onclick="fave(this.id)"><span
+				class="glyphicon glyphicon-heart-empty" style="color: #990000;" />
+				Remove from favorites</a> <a class="btn btn-warning"
+			ng-attr-id="{{event._links.self.href}}" onclick="edit(this.id)">Edit</a>
+			<a class="btn btn-danger" ng-attr-id="{{event._links.self.href}}"
+			onclick="confirmDelete(this.id)">Delete</a></td>
+
+	</table>
+
+	<script type="text/javascript">
+		function fave(url) {
+			var url_split = url.split("/");
+			var id = url_split[url_split.length - 1];
+			window.location.href = '/fave/' + id;
+		}
+
+		function edit(url) {
+			var url_split = url.split("/");
+			var id = url_split[url_split.length - 1];
+			window.location.href = '/edit/' + id;
+		}
+
+		function confirmDelete(url) {
+			var url_split = url.split("/");
+			var id = url_split[url_split.length - 1];
+			var r = confirm("Voulez-vous vraiment supprimer cet événement?");
+			if (r == true) {
+				window.location.href = '/delete/' + id;
+			}
+		}
+	</script>
 
 </body>
 </html>

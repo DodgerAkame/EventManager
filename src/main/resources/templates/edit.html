@@ -1,39 +1,75 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" ng-app="edit-app">
 
 <head>
 <title>Edition d'un événement</title>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap.min.css}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/javascript" src="js/angular.min.js"
+	th:src="@{/js/angular.min.js}" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"
+	th:src="@{https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js}" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js"
+	th:src="@{https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js}" />
+<script type="text/javascript" src="app/app.js" th:src="@{/app/app.js}" />
+
+<style>
+.ng-invalid.ng-dirty {
+	border-color: #FA787E;
+}
+
+.ng-valid.ng-dirty:focus {
+	border-color: #78FA89;
+}
+</style>
+
 </head>
 
-<body>
+<body ng-controller="MainCtrlEdit as event">
 	<h1>Edition d'un événement</h1>
-	<form action="#" th:action="@{/edit}" th:object="${event}" method="post">
+	<form name="edit" action="#" th:action="@{/edit}" th:object="${event}"
+		method="post" novalidate="novalidate" class="form-inline">
 		<p>
-			Date de début : <input type="date" th:field="*{date}" />
+			Date de début : <input class="form-control" name="event.date" type="date"
+				th:field="*{date}" ng-model="event.date" required="required" />
 		</p>
 
 		<p>
-			Title: <input type="text" th:field="*{title}" />
+			Title: <input class="form-control" type="text" name="event.title" th:field="*{title}"
+				ng-model="event.title" required="required" />
 		</p>
+		
 		<p>
 			Description:
-			<textarea rows="4" cols="50" th:field="*{description}" />
+			<textarea class="form-control" name="event.description" rows="4" cols="50"
+				th:field="*{description}" ng-model="event.description"
+				required="required" />
 		</p>
 		<p>
-			Durée (en heures) :<input type="number" th:field="*{hours}" />
+			Durée (en heures) :<input class="form-control" name="event.hours" type="number"
+				th:field="*{hours}" ng-model="event.hours" required="required" />
 		</p>
 		<p>
-			Lieu de l'événement: <input type="text" th:field="*{lieu}" />
+			Lieu de l'événement: <input class="form-control" name="event.lieu" type="text"
+				th:field="*{lieu}" ng-model="event.lieu" required="required" />
 		</p>
 		<p>
-			Type: <input type="text" th:field="*{type}" />
+			Type: <input class="form-control" name="event.type" type="text" th:field="*{type}"
+				ng-model="event.type" required="required" />
 		</p>
 		<p>
-			<input type="submit" value="Submit" /> <input type="reset"
-				value="Reset" />
+			Favori : <input class="checkbox" type="checkbox" th:field="*{favorite}" />
 		</p>
+		<p>
+			<input class="btn btn-success" type="submit"
+				ng-disabled="edit.$invalid" value="Envoyer" /> <input
+				class="btn btn-warning" type="reset" value="Remettre à zéro" />
+		</p>
+		<p ng-hide="edit.$valid"><b>Veuillez remplir tout les champs</b></p>
 	</form>
 </body>
 

@@ -23,13 +23,12 @@ public class EditEventController extends WebMvcConfigurerAdapter {
 	@Autowired
 	private EventService service;
 
-	private static final Logger log = LoggerFactory.getLogger(Application.class);
 	private Integer id;
-	
 
 	@GetMapping("/edit/{id}")
 	public String eventEdit(@PathVariable Integer id, Model model) {
 		model.addAttribute("event", service.getEvent(id));
+		model.addAttribute("truc",service.getEvent(id));
 		this.id = id;
 		return "edit";
 	}
@@ -38,20 +37,12 @@ public class EditEventController extends WebMvcConfigurerAdapter {
 	@Transactional
 	public String eventEditPost(@Valid @ModelAttribute("event") Event event, BindingResult bindingResult, Model model) {
 
-		// if (bindingResult.hasErrors()) {
-		// System.out.println("HEY");
-		// return "edit";
-		// }
-
 		if (bindingResult.hasErrors()) {
-			log.info(null, bindingResult.getFieldErrorCount());
 			return "edit/" + event.getId();
 		}
-		
-		
+
 		event.setId(id);
 		service.updateEvent(event);
-		
 
 		return "redirect:/liste";
 	}

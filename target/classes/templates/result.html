@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Getting Started: Handling Form Submission</title>
+<title>Ajout d'un événement : Confirmation</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
@@ -12,7 +12,7 @@
 	<p th:text="'Durée: ' + ${event.hours}" />
 	<p th:text="'Lieu de l\'événement: ' + ${event.lieu}" />
 	<p th:text="'Type: '+ ${event.type}" />
-	<a href="/creation">Créer un nouvel événement</a>
-	<a href="/liste">Liste des événements</a>
+	<a href="/creation"><button class="btn btn-default">Créer un nouvel événement</button></a>
+	<a href="/liste"><button class="btn btn-default">Liste des événements</button></a>
 </body>
 </html>
